@@ -14,7 +14,7 @@ class EventsIndex extends Component {
     this.props.readEvents()
   }
 
-  
+  $titile;
 
   renderEvents(){
     return _.map(this.props.events, event => (
