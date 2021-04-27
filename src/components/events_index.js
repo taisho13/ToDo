@@ -4,7 +4,12 @@ import _ from 'lodash'
 import {Link} from 'react-router-dom';
 
 import {readEvents} from '../actions';
-import {Button} from '@material-ui/core';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import { Button } from '@material-ui/core';
 
 
     
@@ -18,38 +23,41 @@ class EventsIndex extends Component {
 
   renderEvents(){
     return _.map(this.props.events, event => (
-      <tr key = {event.id}>
-        <td>{event.id}</td>
-        <td>
-          <Link to={`/events/${event.id}`}>
+      <TableRow key = {event.id}>
+        <TableCell>{event.id}</TableCell>
+        <TableCell>
+          <Link to={`/events/${event.id}`}>ß
           {event.title}
           </Link>
-        </td>
-        <td>{event.body}</td>
-      </tr>
+        </TableCell>
+        <TableCell>{event.body}</TableCell>
+      </TableRow>
 
     ))
   }
 
   render(){
-    
+    const style = {
+      position: "fixed",
+      right:50,
+      bottom:50
+    }
     return(
    <React.Fragment>
-     
-     <table>
-       <thead>
-         <tr>
-           <th>ID</th>
-           <th>Title</th>
-           <th>Body</th>
-         </tr>
-       </thead>
-       <tbody>
+
+     <Table>
+       <TableHead>
+           <TableCell>ID</TableCell>
+           <TableCell>Title</TableCell>
+           <TableCell>Body</TableCell> 
+       </TableHead>
+
+       <TableBody> 
          {this.renderEvents()}
-       </tbody>
-     </table>
-     
-      <Button variant="outlined" color="primary" href="#outlined-buttons">
+       </TableBody>
+
+     </Table>
+     <Button style = {style} variant="contained" color="secondary">
      <Link to="/events/new">new event</Link>
      </Button>
    </React.Fragment>
